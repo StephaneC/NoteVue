@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head></head>
+  <body>
+    <div id="app">
+      <h1>{{ title }} </h1>
+      <p v-if="messages.length == 0">No message for now! Add one ;-)</p>
+      <ul>
+        <li v-for="msg in messages">
+          {{ msg }}
+        </li>
+      </ul>
+      <input v-model="message"></input>
+      <button v-on:click="addMessage">Add</button>
+    </div>
+
+  </body>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="./app.js"></script>
+
+</html>
