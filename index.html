@@ -7,7 +7,7 @@
       <p v-if="messages.length == 0">No message for now! Add one ;-)</p>
       <ul>
         <li v-for="msg in messages">
-          {{ msg }}
+          {{ msg }} <button v-on:click="removeMessage(msg)">delete</button>
         </li>
       </ul>
       <input v-model="message"></input>

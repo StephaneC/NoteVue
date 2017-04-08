@@ -7,15 +7,15 @@ new Vue({
   },
   mounted: function () {
     console.log("vue app ready");
-    messages = localStorage.getItem('messages');
+    this.messages = JSON.parse(localStorage.getItem('messages'));
   },
   methods: {
     readMessages: function(){
       console.log("vue app ready");
-      return localStorage.getItem('messages');
+      return JSON.parse(localStorage.getItem('messages'));
     },
     addMessage: function() {
-      console.log("adding new note " + this.message);
+      console.log("adding new note " + JSON.stringify(this.message));
 
       //display Message on screen
       if(!this.messages){
@@ -24,7 +24,12 @@ new Vue({
       this.messages.push(this.message);
 
       //add Message to localstorage
-      localStorage.setItem('messages', this.messages);
+      localStorage.setItem('messages', JSON.stringify(this.messages));
+    },
+    removeMessage: function(msg){
+      this.messages.splice(this.messages.indexOf(msg), 1);
+      //update localStorage
+      localStorage.setItem('messages', JSON.stringify(this.messages));
     }
   }
 })
