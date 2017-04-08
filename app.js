@@ -1,16 +1,17 @@
 // Define a new component called todo-item
 Vue.component('note-item', {
   props: ['message'],
-  template: '<li>{{ message }} <button v-on:click="removeMessage(msg)">delete</button></li>',
+  template: '<li>{{ message }} <button v-on:click="removeMessage(message)">delete</button></li>',
   methods: {
     removeMessage: function(msg){
       // get messages
       var messages = JSON.parse(localStorage.getItem('messages'));
       //delete it
-      this.messages.splice(this.messages.indexOf(msg), 1);
+      messages.splice(messages.indexOf(msg), 1);
       //update localStorage
-      localStorage.setItem('messages', JSON.stringify(this.messages));
+      localStorage.setItem('messages', JSON.stringify(messages));
       //notify
+      this.$emit('deletemsg');
     }
   }
 })
@@ -27,9 +28,8 @@ new Vue({
     this.messages = JSON.parse(localStorage.getItem('messages'));
   },
   methods: {
-    readMessages: function(){
-      console.log("vue app ready");
-      return JSON.parse(localStorage.getItem('messages'));
+    updateMessages: function(){
+      this.messages = JSON.parse(localStorage.getItem('messages'));
     },
     addMessage: function() {
       console.log("adding new note " + JSON.stringify(this.message));

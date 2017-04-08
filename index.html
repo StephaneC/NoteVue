@@ -6,7 +6,7 @@
       <h1>{{ title }} </h1>
       <p v-if="messages.length == 0">No message for now! Add one ;-)</p>
       <ul>
-        <note-item v-for="msg in messages" v-bind:message="msg"/>
+        <note-item v-for="msg in messages" v-on:deletemsg="updateMessages" v-bind:message="msg"/>
         <li v-for="msg in messages">
           {{ msg }} <button v-on:click="removeMessage(msg)">delete</button>
         </li>
