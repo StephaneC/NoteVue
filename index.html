@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head></head>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
   <body>
     <div id="app">
       <h1>{{ title }} </h1>
       <p v-if="messages.length == 0">No message for now! Add one ;-)</p>
-      <ul>
-        <note-item v-for="msg in messages" v-on:deletemsg="updateMessages" v-bind:message="msg"/>
-        <li v-for="msg in messages">
-          {{ msg }} <button v-on:click="removeMessage(msg)">delete</button>
-        </li>
-      </ul>
-      <input v-model="message"></input>
-      <button v-on:click="addMessage">Add</button>
+      <div class="row">
+        <div class="col s12 m6">
+          <note-item v-for="msg in messages" v-on:deletemsg="updateMessages" v-bind:message="msg"/>
+        </div>
+      </div>
+      <note-add v-if="wannaAdd" v-on:addmsg="updateMessages"></note-add>
+      <a class="btn-floating btn-large waves-effect waves-light red" v-on:click="wannaAddFct"><i class="material-icons">add</i></a>
     </div>
 
   </body>
